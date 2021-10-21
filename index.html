@@ -23,45 +23,142 @@
             <img src="images/selo.svg" alt="Selo Rocketseat" />
           </span>
 
-          <img src="images/me.jpg" alt="Foto pessoal" />
+          <img
+            id="user_img"
+            src="https://avatars.githubusercontent.com/u/6643122?v=4"
+            alt="Foto pessoal do usuário"
+          />
         </div>
 
         <div class="content">
-          <h1>Kelvin de Miranda Barros</h1>
-          <a href="https://github.com/kelvindemirandabarros" target="_blank">
-            <img src="images/github.svg" alt="" />
-            _klvndmb
+          <h1 id="user_name">Mayk Brito</h1>
+
+          <a
+            id="user_github"
+            href="https://github.com/maykbrito"
+            target="_blank"
+          >
+            <img src="images/github.svg" alt="Ícone do github" />
+            maykbrito
           </a>
 
-          <p>
-            <!-- An instructor focused on helping people start programming for web. -->
-            A person who loves solve problems with programming
+          <p id="user_description">
+            An instructor focused on helping people start programming for web.
           </p>
 
           <ul>
-            <!-- <li>
-              <a href="https://www.youtube.com" target="_black">
+            <li>
+              <a
+                id="user_youtube"
+                href="https://www.youtube.com/maykbrito"
+                target="_black"
+              >
                 <img src="images/youtube.svg" alt="Ícone do youtube" />
               </a>
-            </li> -->
+            </li>
+
             <li>
-              <a href="https://www.facebook.com/kelvindmb" target="_black">
-                <img src="images/facebook.svg" alt="Ícone do youtube" />
+              <a
+                id="user_facebook"
+                href="https://www.facebook.com/maykbrito"
+                target="_black"
+              >
+                <img src="images/facebook.svg" alt="Ícone do facebook" />
               </a>
             </li>
+
             <li>
-              <a href="https://www.instagram.com/_klvndmb/" target="_black">
-                <img src="images/instagram.svg" alt="Ícone do youtube" />
+              <a
+                id="user_instagram"
+                href="https://www.instagram.com/maykbrito"
+                target="_black"
+              >
+                <img src="images/instagram.svg" alt="Ícone do instagram" />
               </a>
             </li>
-            <!-- <li>
-              <a href="https://www.twitter.com" target="_black">
-                <img src="images/twitter.svg" alt="Ícone do youtube" />
+
+            <li>
+              <a
+                id="user_twitter"
+                href="https://www.twitter.com/maykbrito"
+                target="_black"
+              >
+                <img src="images/twitter.svg" alt="Ícone do twitter" />
               </a>
-            </li> -->
+            </li>
           </ul>
         </div>
+
+        <button id="change_user" class="btn change_user">Trocar Usuário</button>
       </div>
     </main>
+
+    <script>
+      const mayk_user = {
+        user_img: 'https://avatars.githubusercontent.com/u/6643122?v=4',
+        user_name: 'Mayk Brito',
+        user_github: 'https://github.com/maykbrito',
+        user_github_username:
+          '<img src="images/github.svg" alt="Ícone do github" /> maykbrito',
+        user_description:
+          'An instructor focused on helping people start programming for web.',
+        user_youtube: 'https://www.youtube.com/maykbrito',
+        user_facebook: 'https://www.facebook.com/maykbrito',
+        user_instagram: 'https://www.instagram.com/maykbrito',
+        user_twitter: 'maykbrito',
+      };
+
+      const kelvin_user = {
+        user_img: 'https://avatars.githubusercontent.com/u/58356555?v=4',
+        user_name: 'Kelvin de Miranda Barros',
+        user_github: 'https://github.com/kelvindemirandabarros',
+        user_github_username:
+          '<img src="images/github.svg" alt="Ícone do github" /> kelvindemirandabarros',
+        user_description: 'A person who loves solve problems with programming.',
+        user_youtube: undefined,
+        user_facebook: 'https://www.facebook.com/kelvindmb',
+        user_instagram: 'https://www.instagram.com/_klvndmb',
+        user_twitter: undefined,
+      };
+
+      const users = [mayk_user, kelvin_user];
+      var user_number = 0;
+
+      function change_user() {
+        if (user_number === 0) {
+          user_number++;
+        } else {
+          user_number = 0;
+        }
+        // console.log('Link da foto do usuário:', user_img.src);
+        document.getElementById('user_img').src =
+          users[user_number]['user_img'];
+        // console.log('Nome do usuário:', user_name.textContent);
+        document.getElementById('user_name').textContent =
+          users[user_number]['user_name'];
+
+        document.getElementById('user_github').innerHTML =
+          users[user_number]['user_github_username'];
+
+        document.getElementById('user_description').textContent =
+          users[user_number]['user_description'];
+
+        for (let link of document.getElementsByTagName('a')) {
+          // console.log(link);
+          // console.log(link.href);
+          if (users[user_number][link.id]) {
+            link.style.display = 'block';
+            link.href = users[user_number][link.id];
+          } else {
+            // document.getElementById("element")
+            link.style.display = 'none';
+          }
+        }
+      }
+
+      document.getElementById('change_user').addEventListener('click', () => {
+        change_user();
+      });
+    </script>
   </body>
 </html>
